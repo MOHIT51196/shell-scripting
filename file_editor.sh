@@ -24,7 +24,7 @@ else
                 fi
             fi
 
-            echo "FILE: $file (Press ctrl + d to save)"
+            echo "FILE: $file (Press ctrl + d to save the changes)"
 
             # read file and print
             while IFS=' ' read line
