@@ -245,8 +245,41 @@ done
 # IFS : Internal Field Seperator
 echo -e "\n===== WAY 3 =====\n"
 
-while IFS=' ' read -r line
-do 
-echo $line
-done < dummy.dart
+file1='dummy.dart'
 
+if [ -e $file1 -a -f $file1 ]
+then
+    while IFS=' ' read -r line
+    do 
+    echo $line
+    done < $file1
+fi
+
+# ========== ARRAYS ============
+# arrays in shell can be hetrogenous 
+# Can add element at any index , there is no out of bound excepts
+# Gaps in array are allowed
+
+arr=(12 'mohit' 'vaibhav')
+# Show indices : ${!arr[@]}
+# Show elements : ${arr[index]}
+# Show all elements : ${arr[@]}
+# Show size of array : ${#arr[@]}
+
+echo "ARRAY : " ${arr[@]}
+echo "ELEMENT[2] : " ${arr[1]}
+echo "ARRAY SIZE : " ${#arr[@]}
+echo "ARRAY INDICES : " ${!arr[@]}
+
+# Creation 
+arr[6]='malhotra'
+echo ${arr[@]}      # data will print in sequence only
+echo ${!arr[@]}
+
+# modification
+arr[2]='ayushi'
+echo "After modification : " ${arr[@]}
+
+# Deleting the value
+unset arr[1]
+echo "After deletion : " ${arr[@]}
