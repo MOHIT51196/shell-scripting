@@ -9,7 +9,7 @@ echo $HOME
 # variables cannot start with number
 name1="Mohit Malhotra"
 
-# custom veriable
+# custom variable
 echo Developed by $name1
 echo
 
@@ -212,17 +212,6 @@ num4=24
 echo "scale=8;sqrt(24)" | bc -l 
 
 
-# ========== LOOPS ============
-
-while [ $age -gt 20 ]
-do 
-    echo "You are big now !! Enjoy with a beer"
-    (( age-- ))
-     # Delay : sleep <seconds>
-    sleep 1 
-done
-
-
 # ========== FILE HANDLING ============
 # WAY 1
 echo -e "\n===== WAY 1 =====\n"
@@ -283,3 +272,90 @@ echo "After modification : " ${arr[@]}
 # Deleting the value
 unset arr[1]
 echo "After deletion : " ${arr[@]}
+
+
+# ========== LOOPS ============
+# WHILE
+count=3
+while (($count > 0)) 
+do
+    echo "Calling this $count time(s)...."
+    (( count-- ))
+    sleep 0.3  # sleeping for 0.3 sec
+done
+
+# UNTIL
+
+until (($count > 2))
+do 
+echo "Recalling back this $count times...."
+((count++))
+sleep 0.4
+done
+
+
+# FOR IN
+# 1. For collection
+# for i in A B C
+# do 
+#     ...
+# done
+
+
+for i in "Mr." "Mohit" "Malhotra"
+do 
+    echo -e "$i \c"
+done
+echo 
+
+# 2. For Range
+# for i in {start..end..step}
+# do 
+# ...
+# done
+
+# NOTE : Ranges work with Bash version 3.+
+for val in {0..10..3}
+do
+    echo -e "VAL = $val"
+done
+
+# FOR
+# for (( i=0; i<10; i++ ))
+# do 
+# ...
+# done
+
+
+for (( v=4; v>1; v-- ))
+do
+    echo -e "Counter = $v"
+done
+
+
+# Example
+for cmd in date pwd ls "ls -lah"
+do
+echo -e "\n---------- $cmd -----------\n"
+$cmd
+done
+
+
+# SELECT
+# This loop is use to provide menus
+# By nature select loop goes on with selection repeatedly
+
+select nav in "Home" "Profile" "Settings" "About us"
+do
+    # echo "Selected $nav"
+    case $nav in
+    "Home")
+        echo Welcome to Home
+        ;;
+    "About us")
+        echo Nothing interesting about us
+        ;;
+    *)
+        echo "Invalid entry"
+    esac
+done
